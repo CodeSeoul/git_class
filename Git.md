@@ -88,14 +88,18 @@ And you'll get something like this:
 
 This may look confusing at first, but we can make sense of it.
 
-The parts between `@@` symbols are
+The first line shows us the files being compared. `a` and `b` represent difference versions. Index is referencing the commit hashes. `a` is before. `b` is after.
 
+Between the `@@`s describes the section of the file where the upcoming chunk of code came from. `-49,6` means it was line `49` of the original file (`-`) and was `6` lines long. The second file (`+`) also started at line `49` but is now `18` lines long.
+
+Following this is a listing of the changed code. Lines with no symbol before them or color are unchanged. Lines starting with a `+` are new in the `b` version. Lines starting with a `-` were in the `a` version but removed in the `b` version.
 
 #### Commands Covered:
 * `git diff`
 
--- make changes
-diff
+## How do we undo changes?
+
+
 reset
 -- make more changes
 checkout -- file
