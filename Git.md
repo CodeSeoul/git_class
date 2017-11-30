@@ -98,10 +98,21 @@ Following this is a listing of the changed code. Lines with no symbol before the
 * `git diff`
 
 ## How do we undo changes?
+### Reset
+You can use `git reset --hard` to remove any changes you've made to the code since the last commit.
+If you've staged a change with `git add` and want to unstage it , you can use `git reset` alone. This will not change the files themselves.
+If you want to undo commits and remove them from history as if they've never happened, you can use `git reset <commit>` where `<commit>` is the hash of the commit you want to return to. You can also use notation like `HEAD~3` to go back by 3 commits. **Be careful**. Only do commands that rewrite history like this on branches only you have touched. Avoid doing this on a master branch.
+
+#### Commands Covered:
+* `git reset`
+
+### Revert
+Revert is similar to a `git reset <commit>`. While reset rewrites history, revert undoes a (group of) commit[s] and creates a new commit to track the change. This is useful when a commit has introduced a bug and you want to keep record of the bug and the code that created it. Similar to `git reset <commit>`, you use `git revert <commit>` where `<commit>` is either a commit hash or a relative commit notation like `HEAD~3`.
+
+#### Commands Covered:
+* `git revert`
 
 
-reset
--- make more changes
 checkout -- file
 branch
 checkout branch
@@ -113,7 +124,6 @@ branch -d branch
 --make change
 add, commit
 log
-revert
 tag <version>
 -- make changes, add, commit
 tag -a <version> -m <message>
