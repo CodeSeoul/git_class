@@ -49,6 +49,18 @@ git config --global user.email
     * This creates a new commit with the message "Added gitignore"
 9. Run `git status` to see that the working directory is now "clean" - there are no differences between your current files and the last commit
 
+There's a pattern you'll want to memorize here:
+1. `git add` - Mark (stage) the files you want to commit
+2. `git commit` - Commit the files, creating a checkpoint with a message
+
+As a handy shortcut for `git add`, you can use `git add -A` to add all files that have changed. Just make sure to double-check things with `git status` when using this method.
+
+#### Commands Covered:
+* `git init`
+* `git status`
+* `git add`
+* `git commit`
+
 ## So what just happened?
 We created a new Git repository, created a new file, staged it, and committed it. This is the beginning of the history for this project. Still having trouble understanding history? Run this:
 ```
@@ -60,6 +72,27 @@ You should get something that looks kind of like this:
 This shows you the author of the commit, a timestamp of when it happened, and a message ideally describing the changes made in the commit.
 
 You'll also notice a long string of numbers and letters. That's called a `hash`. Each commit gets its own unique hash, used to identify itself. It's basically a fancy ID.
+#### Commands Covered:
+* `git log`
+
+## What do changes look like?
+Let's say your project uses a configuration file, and this configuration file contains a password. You don't want that password in source control for security purposes, so you need to have Git ignore this configuration file. If your configuration file looks something like `default.conf`, just open your `.gitignore` file and add `*.conf` to it. This will cause Git to ignore any files ending in `.conf`.
+
+If you run `git status`, you'll see that Git recognizes the file has been modified. If you want to see the changes that have been made between now and your last commit, you can run this:
+```
+git diff
+```
+
+And you'll get something like this:
+![Diff output](images/diff_output.png)
+
+This may look confusing at first, but we can make sense of it.
+
+The parts between `@@` symbols are
+
+
+#### Commands Covered:
+* `git diff`
 
 -- make changes
 diff
