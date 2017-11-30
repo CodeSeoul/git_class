@@ -97,11 +97,25 @@ Following this is a listing of the changed code. Lines with no symbol before the
 #### Commands Covered:
 * `git diff`
 
+## How can I safely experiment?
+Version control systems include a mechanism called "branching".
+
 ## How do we undo changes?
+You have three options:
+* Checkout
+* Reset
+* Revert
+
+### Checkout
+You can actually use checkout to undo changes. By using `git checkout -- <file>`, you can return a file to the state it was in at the last commit. Alternatively, you can use `git checkout <commit> <file>` to return the file to the state of a previous commit. `<commit>` is the hash of the commit you want to return to. You can also use notation like `HEAD~3` to go back by 3 commits.
+
+#### Commands Covered:
+* `git checkout`
+
 ### Reset
 You can use `git reset --hard` to remove any changes you've made to the code since the last commit.
 If you've staged a change with `git add` and want to unstage it , you can use `git reset` alone. This will not change the files themselves.
-If you want to undo commits and remove them from history as if they've never happened, you can use `git reset <commit>` where `<commit>` is the hash of the commit you want to return to. You can also use notation like `HEAD~3` to go back by 3 commits. **Be careful**. Only do commands that rewrite history like this on branches only you have touched. Avoid doing this on a master branch.
+If you want to undo commits and remove them from history as if they've never happened, you can use `git reset <commit>`. Similar to `git checkout <commit> <file>`, you use `git reset <commit>` where `<commit>` is either a commit hash or a relative commit notation like `HEAD~3`. **Be careful**. Only do commands that rewrite history like this on branches only you have touched. Avoid doing this on a master branch.
 
 #### Commands Covered:
 * `git reset`
