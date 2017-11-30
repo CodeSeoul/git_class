@@ -98,7 +98,25 @@ Following this is a listing of the changed code. Lines with no symbol before the
 * `git diff`
 
 ## How can I safely experiment?
-Version control systems include a mechanism called "branching".
+Version control systems include a mechanism called "branching". Branches are used to allow changes to code separately. This allows developers to write code in isolation and defer merging it with other developers' changes until they're ready. Let's test it out:
+```
+git branch
+```
+This will only show a master branch. By default, every repository has a master branch. This is considered the "mainline" or "trunk" of the project tree. Often, developers will work on features or bug fixes in a separate branch. This allows them to focus on accomplishing their task. Once complete, they can then merge it with the main project or another branch.
+
+So how do we setup a new branch? There's two ways:
+```
+git checkout -b new_branch
+```
+The above creates a new branch named `new_branch` and switches your project to use that branch immediately.
+```
+git branch new_branch
+```
+The above creates a new branch named `new_branch` but does not set it as the current branch.
+
+Most often, you'll use `git checkout -b new_branch` to create new branches, since you'll likely start working on them immediately.
+
+Okay, so what exactly is a branch?
 
 ## How do we undo changes?
 You have three options:
@@ -127,7 +145,6 @@ Revert is similar to a `git reset <commit>`. While reset rewrites history, rever
 * `git revert`
 
 
-checkout -- file
 branch
 checkout branch
 checkout -b branch
