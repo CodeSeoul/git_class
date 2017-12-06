@@ -116,7 +116,38 @@ The above creates a new branch named `new_branch` but does not set it as the cur
 
 Most often, you'll use `git checkout -b new_branch` to create new branches, since you'll likely start working on them immediately.
 
-Okay, so what exactly is a branch?
+### Okay, so what exactly is a branch?
+A branch is a separate path of history. Commits you make in one branch will not appear in any other branches unless you do something to bring those commits into the other branches. This allows you to work on something independently without fear of impacting anything else. Whenever you're ready, you can remove a branch without affecting anything else or merge the commits in one branch into another. Put simply, you can think of branches as separate work areas.
+
+There are some strategies to branching - different ways to use branches to support different development styles. Often, the `master` branch, the default branch, is considered the public release branch. Each release, developers will usually create a new branch specific to that release. Additionally, there will be a standing `development` branch. This branch is considered the global workspace. From the `development` branch, developers will usually create new branches for each feature or bug they're working on. If this doesn't make sense at initially, don't worry. People tend to naturally arrive at some system like this. There's also rarely only one solution to accomplish something, so figure out what works for you!
+
+#### Commands Covered:
+* `git checkout`
+* `git branch`
+
+## How do I put together changes in different branches?
+We've talked about creating different branches as different workspaces, but they're only useful if they work together. We can take the commits on one branch and put them into another branch. How can we do that? There are two commands we can use: `git merge` and `git rebase`.
+
+When joining code from two different history, there is the possibility of trouble. Git will try to intelligently put changes together; however, there are some times where Git is unsure of the best way to handle two different changes to the same code. When this occurs, we get a conflict. We'll cover how to handle conflicts for both merges and rebases.
+
+### Merge
+Merging is taking two separate histories (read as, branches) and joining them at their currently latest point. If they're not at the same point in history, a new commit will be created representing the merge action. You can think of this as two separate lines of commits joining at the end into one line.
+
+To do a merge, first checkout the branch that you want to contain both histories. Next, tell Git to merge the branch that you want to pull history from:
+```
+git merge <other_branch>
+```
+Ideally, Git will merge the histories, create a commit message for you, and summarize the changes in output to the screen. Unfortunately, things aren't always ideal.
+
+#### Handling merge conflicts
+If the same lines in a file are changed in both histories, Git won't know how to merge them. When this occurs, you have a conflict. Git does provide tools to help you manage conflicts. 
+
+### Rebase
+Rebasing is similar to merging in that it joins to separate histories. The major difference is that instead of joining the two histories at the end, takes on history and appends it as new commits after the other history. You can think of this as two lines of histories where instead of joining at the end, one line is added to the end of the other line.
+
+#### Commands Covered:
+* `git merge`
+* `git rebase`
 
 ## How do we undo changes?
 You have three options:
